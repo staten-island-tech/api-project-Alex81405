@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
-    <title>API Project</title>
-  </head>
-  <body>
-    <h1 class="main-header">Adopt A Pet</h1>
-    <h2 class="desc"><i>Search for a Pet to Adopt</i></h2>
-      <form class="form">
-          <label for="userInput" class="label"><b>Search by character: </b></label>
-          <input type="text" placeholder="Ex: Bulldog" id="userInput" required>
-          <input type="submit" value="Search" class="button">
-      </form>
-      <div class="box">
-        <!--<div class="card">
-            <img src="" alt="">
-            <div class="flex-container">
-              <h2 class="name">This is the Character.</h2>
-              <h3 class="features">Featured in</h3>
-            </div>
-            </div> -->
-      </div>
-    <script type="module" src="./js/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@0;1&family=Inconsolata&family=Source+Sans+Pro&display=swap"
+    rel="stylesheet">
+  <title>API Project</title>
+</head>
+
+<body>
+
+  <section>
+
+    <h1 class="title">Random Jokes: </h1>
+
+    <div id="searchWord">
+      <label for="searchInput" class="search">Type a Keyword:</label>
+      <input type="text" id="searchInput" class="search">
+      <button class="button" id="searchButton">Submit</button>
+    </div>
+
+    <div class="container">
+      <p id="joke" class="joke"></p>
+      <button id="getJokeButton" class="button">Refresh</button>
+    </div>
+
+  </section>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+
 </html>
