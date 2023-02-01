@@ -35,21 +35,21 @@ async function specificCharacter(url, userInput) {
       .filter((element) => element.name.includes(`${userInput}`))
       .map((element) => {
         DOMSelectors.box.insertAdjacentHTML(
-          "beforeend",
-          `<div class="card">
-          <img class="image" src="${element.imageUrl}" alt="">
-          <h2 class="name">${element.name}</h2>
-          <div class="features">
-            <ul><b>Films: </b> ${element.films}</ul>
-            <br></br>
-            <ul><b>Short Films: </b> ${element.shortFilms}</ul>
-            <br></br>
-            <ul><b>TV Shows: </b>${element.tvShows}</ul>
-            <br></br>
-            <ul><b>Video Games: </b> ${element.videoGames}</ul>
-          </div>
-        </div>
-        `
+        //   "beforeend",
+        //   `<div class="card">
+        //   <img class="image" src="${element.imageUrl}" alt="">
+        //   <h2 class="name">${element.name}</h2>
+        //   <div class="features">
+        //     <ul><b>Films: </b> ${element.films}</ul>
+        //     <br></br>
+        //     <ul><b>Short Films: </b> ${element.shortFilms}</ul>
+        //     <br></br>
+        //     <ul><b>TV Shows: </b>${element.tvShows}</ul>
+        //     <br></br>
+        //     <ul><b>Video Games: </b> ${element.videoGames}</ul>
+        //   </div>
+        // </div>
+        // `
         )
       })
     }catch (error) {
