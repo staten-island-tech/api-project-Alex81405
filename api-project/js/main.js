@@ -1,15 +1,9 @@
 import "/styles/style.css";
-
-const DOMSelectors = {
-    jokeButton: document.getElementById("getJokeButton"),
-    joke: document.getElementById("joke"),
-    searchButton: document.getElementById("searchButton"),
-    searchInput: document.getElementById("searchInput")
-};
+import { DOMSelectors } from "./dom";
 
 const URL = "https://v2.jokeapi.dev/joke/Any?safe-mode";
 
-async function getJoke(url) {
+async function getRandomJoke(url) {
     try {
         const response = await fetch(url)
         if (response.status < 200 || response.status > 299) {
@@ -19,12 +13,12 @@ async function getJoke(url) {
             const data = await response.json();
             console.log(data);
             if (data.setup) {
-                DOMSelectors.joke.innerHTML = `${data.setup} <br><br> ${data.delivery}`;
+                DOMSelectors.randomjoke.innerHTML = `${data.setup} <br><br> ${data.delivery}`;
             } else if (data.error === true) {
-                DOMSelectors.joke.innerHTML = data.causedBy;
+                DOMSelectors.randomjoke.innerHTML = data.causedBy;
             }
             else {
-                DOMSelectors.joke.innerHTML = data.joke;
+                DOMSelectors.randomjoke.innerHTML = data.randomjoke;
             }
         }
     } catch (error) {
@@ -36,14 +30,14 @@ DOMSelectors.searchButton.addEventListener("click", function () {
     let newURL = URL + "&contains=" + DOMSelectors.searchInput.value;
     console.log(searchInput.value)
     console.log(newURL)
-    getJoke(newURL);
+    getRandomJoke(newURL);
     DOMSelectors.searchInput.value = "";
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    getJoke(URL);
+    getRandomJoke(URL);
 });
 
 DOMSelectors.jokeButton.addEventListener("click", function () {
-    getJoke(URL);
+    getRandomJoke(URL);
 });
