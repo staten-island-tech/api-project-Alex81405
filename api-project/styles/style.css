@@ -9,9 +9,9 @@ body,
 }
 
 :root {
-  --darkGrey: rgb(25, 38, 39);
-  --grey: rgb(61, 65, 69);
-  --white: rgb(255, 255, 255);
+  --darkGrey: rgb(30,40,50);
+  --grey: rgb(65,70,75);
+  --white: rgb(255,255,255);
   --h1: 4rem;
   --p: 3rem;
 }
