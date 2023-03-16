@@ -1,43 +1,46 @@
-import "/styles/style.css";
-import { DOMSelectors } from "./dom";
+const usernameElement = document.getElementById("username");
+const messageElement = document.getElementById("message");
+const button = document.getElementById("submitButton");
+button.addEventListener("click",updateDB);
 
-const URL = "https://v2.jokeapi.dev/joke/Any?safe-mode";
+//Set database object here
+let database = firebase.database().ref()
 
-async function getRandomJoke(url) {
-    try {
-        const response = await fetch(url)
-        if (response.status < 200 || response.status > 299) {
-            console.log(response.status);
-            throw new Error(response);
-        } else {
-            const data = await response.json();
-            console.log(data);
-            if (data.setup) {
-                DOMSelectors.randomjoke.innerHTML = `${data.setup} <br><br> ${data.delivery}`;
-            } else if (data.error === true) {
-                DOMSelectors.randomjoke.innerHTML = data.causedBy;
-            }
-            else {
-                DOMSelectors.randomjoke.innerHTML = data.randomjoke;
-            }
-        }
-    } catch (error) {
-        console.log(error);
+/**
+ * Updates the database with the username and message.
+ */
+function updateDB(event){
+    event.preventDefault();
+    const username        = usernameElement.value;
+    const message         = messageElement.value;
+
+    usernameElement.value = "";
+    messageElement.value  = "";
+
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+
+    let value = {
+        NAME:username,
+        MESSAGE:message,
+        TIMESTAMP:dateTime
     }
+    // console.log(username + " : " + message);
+
+    //Update database here
+    database.push(value);
+
 }
 
-DOMSelectors.searchButton.addEventListener("click", function () {
-    let newURL = URL + "&contains=" + DOMSelectors.searchInput.value;
-    console.log(searchInput.value)
-    console.log(newURL)
-    getRandomJoke(newURL);
-    DOMSelectors.searchInput.value = "";
-});
+// Set database "child_added" event listener here
+database.on("child_added", addMessageToBoard);
 
-document.addEventListener("DOMContentLoaded", function () {
-    getRandomJoke(URL);
-});
-
-DOMSelectors.jokeButton.addEventListener("click", function () {
-    getRandomJoke(URL);
-});
+function addMessageToBoard(rowData) {
+    let row = rowData.val();
+    const pElement = document.createElement('p');
+    pElement.innerText = `${row.TIMESTAMP}: ${row.NAME}: ${row.MESSAGE}`;
+    let messageContainer = document.querySelector('.allMessages');
+    messageContainer.appendChild(pElement); 
+}
